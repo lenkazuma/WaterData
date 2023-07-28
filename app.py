@@ -45,7 +45,7 @@ st.write(data_df)
 st.line_chart(data_df.set_index('Timestamp')['Temperature'])
 
 # Draw line chart for Timestamp vs EC
-st.line_chart(data_df.set_index('Timestamp')['_2'])
+st.line_chart(data_df.set_index('Timestamp')['EC'])
 
 # Draw line chart for Timestamp vs pH
 st.line_chart(data_df.set_index('Timestamp')['pH'])
