@@ -37,7 +37,9 @@ def create_database_connection():
 db_conn = create_database_connection()
 
 # Print results.
-#st.write(data_df)
+
+data_df = data_df.rename(columns={'_6': 'LightPercentage', '_2': 'EC'})
+st.write(data_df)
 
 # Draw line chart for Timestamp vs Temperature
 st.line_chart(data_df.set_index('Timestamp')['Temperature'])
@@ -50,6 +52,3 @@ st.line_chart(data_df.set_index('Timestamp')['pH'])
 
 # Draw line chart for Timestamp vs Light
 st.line_chart(data_df.set_index('Timestamp')['Light'])
-
-# Draw line chart for Timestamp vs Light Percentage
-st.line_chart(data_df.set_index('Timestamp')['_6'])
