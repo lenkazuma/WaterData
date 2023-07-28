@@ -1,3 +1,4 @@
 gsheetsdb==0.1.13.1
 google-auth==1.35.0
 google-api-python-client
+pandas
