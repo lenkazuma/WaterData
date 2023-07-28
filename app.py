@@ -18,7 +18,7 @@ conn = connect(credentials=credentials)
 @st.cache_data(ttl=600)
 def get_data():
     query = f'SELECT * FROM "{sheet_url}"'
-    rows = conn.execute(query, headers=1)
+    rows = conn.execute(query)
     # Convert the list of lists to a pandas DataFrame
     df = pd.DataFrame(rows)
     return df
