@@ -16,6 +16,7 @@ conn = connect(credentials=credentials)
 
 # Perform SQL query on the Google Sheet.
 # Uses st.cache_data to only rerun when the query changes or after 10 min.
+
 @st.cache_data(ttl=600)
 def run_query(query):
     rows = conn.execute(query, headers=1)
@@ -28,7 +29,7 @@ rows = run_query(f'SELECT * FROM "{sheet_url}"')
 @st.cache_resource(allow_output_mutation=True)
 def create_database_connection():
     # Code to create and return the database connection
-    return db_connection
+    return conn
 
 # Use the cached database connection
 db_conn = create_database_connection()
