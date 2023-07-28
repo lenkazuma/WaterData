@@ -38,7 +38,7 @@ db_conn = create_database_connection()
 
 # Print results.
 
-data_df = data_df.rename(columns={'_6': 'LightPercentage', '_2': 'EC'})
+data_df = data_df.rename(columns={'_6': 'LightPercentage', '_2': 'EC','_4': 'WaterLevel','_6': 'LightPercentage'})
 st.write(data_df)
 
 # Draw line chart for Timestamp vs Temperature
