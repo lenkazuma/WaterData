@@ -19,8 +19,8 @@ conn = connect(credentials=credentials)
 def get_data():
     query = f'SELECT * FROM "{sheet_url}"'
     rows = conn.execute(query, headers=1)
-    rows = rows.fetchall()
-    df = pd.DataFrame(rows, columns=rows.headers)
+    # Convert the list of lists to a pandas DataFrame
+    df = pd.DataFrame(rows)
     return df
 
 sheet_url = st.secrets["private_gsheets_url"]
