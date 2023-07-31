@@ -3,6 +3,7 @@ import pandas as pd
 from google.oauth2 import service_account
 from gsheetsdb import connect
 import altair as alt
+from streamlit_echarts import st_echarts
 
 st.set_page_config(page_title="Water Data Pi", page_icon=":books:")
 st.title(":books: Water Data Pi :books:")
@@ -41,6 +42,67 @@ db_conn = create_database_connection()
 data_df = data_df.rename(columns={'_6': 'LightPercentage', '_2': 'EC','_4': 'WaterLevel','_6': 'LightPercentage'})
 st.write(data_df)
 
+try:
+    option = {
+        "tooltip": {
+            "formatter": '{a} <br/>{b} : {c}%'
+        },
+        "series": [{
+            "name": 'Temp',
+            "type": 'gauge',
+            "startAngle": 180,
+            "endAngle": 0,
+            "progress": {
+                "show": "true"
+            },
+            "radius":'100%', 
+
+            "itemStyle": {
+                "color": '#58D9F9',
+                "shadowColor": 'rgba(0,138,255,0.45)',
+                "shadowBlur": 10,
+                "shadowOffsetX": 2,
+                "shadowOffsetY": 2,
+                "radius": '55%',
+            },
+            "progress": {
+                "show": "true",
+                "roundCap": "true",
+                "width": 15
+            },
+            "pointer": {
+                "length": '60%',
+                "width": 8,
+                "offsetCenter": [0, '5%']
+            },
+            "detail": {
+                "valueAnimation": "true",
+                "formatter": '{value}%',
+                "backgroundColor": '#58D9F9',
+                "borderColor": '#999',
+                "borderWidth": 4,
+                "width": '60%',
+                "lineHeight": 20,
+                "height": 20,
+                "borderRadius": 188,
+                "offsetCenter": [0, '40%'],
+                "valueAnimation": "true",
+            },
+            "data": [{
+                "value": data_df['Temperature'].iloc[-1],
+                "name": ' C'
+            }]
+        }]
+    }
+    st_echarts(options=option, key="1")
+except Exception as e:
+    print(e)
+
+    
+
+
+# Draw line chart for Timestamp vs Temperature
+st.line_chart(data_df.set_index('Timestamp')['Temperature'])
 
 custom_chart = alt.Chart(data_df).mark_line().encode(
     x='Timestamp',
@@ -51,11 +113,6 @@ custom_chart = alt.Chart(data_df).mark_line().encode(
                 range=['blue', 'red'])
                 )
 )
-
-# Draw line chart for Timestamp vs Temperature
-st.line_chart(data_df.set_index('Timestamp')['Temperature'])
-
-
 #st.line_chart(data_df.set_index('Timestamp')['EC'])
 
 # Draw line chart for Timestamp vs EC
