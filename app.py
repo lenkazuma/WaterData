@@ -47,19 +47,10 @@ st.write(data_df)
 st.line_chart(data_df.set_index('Timestamp')['Temperature'])
 
 
-ec_chart_data = (
-        alt.Chart(
-            data=data_df.set_index('Timestamp')['EC'],
-            title="EC overtime",
-        )
-        .mark_line()
-        .encode(
-            x=alt.X("EC", axis=alt.Axis(title="EC"))
-        )
-)
+#st.line_chart(data_df.set_index('Timestamp')['EC'])
 
 # Draw line chart for Timestamp vs EC
-st.altair_chart(ec_chart_data)
+st.area_chart(data = data_df, x="Timestamp", y = "EC")
 
 # Draw line chart for Timestamp vs pH
 st.line_chart(data_df.set_index('Timestamp')['pH'])
