@@ -42,6 +42,15 @@ data_df = data_df.rename(columns={'_6': 'LightPercentage', '_2': 'EC','_4': 'Wat
 st.write(data_df)
 
 
+custom_chart = alt.Chart(data_df).mark_line().encode(
+    x='Timestamp',
+    y='EC',
+    color=alt.Color('animal',
+            scale=alt.Scale(
+                domain=['antelope', 'velociraptor'],
+                range=['blue', 'red'])
+                )
+)
 
 # Draw line chart for Timestamp vs Temperature
 st.line_chart(data_df.set_index('Timestamp')['Temperature'])
