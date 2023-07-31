@@ -38,7 +38,7 @@ def create_database_connection():
 db_conn = create_database_connection()
 
 # Print results.
-
+data_df.Temperature = data_df.Temperature.round(2)
 data_df = data_df.rename(columns={'_6': 'LightPercentage', '_2': 'EC','_4': 'WaterLevel','_6': 'LightPercentage'})
 st.write(data_df)
 
@@ -81,7 +81,7 @@ try:
                 "backgroundColor": '#58D9F9',
                 "borderColor": '#999',
                 "borderWidth": 4,
-                "width": '50%',
+                "width": '90%',
                 "lineHeight": 20,
                 "height": 20,
                 "borderRadius": 188,
