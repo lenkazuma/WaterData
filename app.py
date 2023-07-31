@@ -86,7 +86,7 @@ try:
                 "lineHeight": 20,
                 "height": 30,
                 "borderRadius": 90,
-                "offsetCenter": [0, '20%'],
+                "offsetCenter": [0, '70%'],
                 "valueAnimation": "true",
             },
             "data": [{
