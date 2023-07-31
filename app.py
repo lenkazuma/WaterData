@@ -59,7 +59,7 @@ ec_chart_data = (
 )
 
 # Draw line chart for Timestamp vs EC
-st.area_chart(ec_chart_data)
+st.altair_chart(ec_chart_data)
 
 # Draw line chart for Timestamp vs pH
 st.line_chart(data_df.set_index('Timestamp')['pH'])
