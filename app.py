@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 from google.oauth2 import service_account
 from gsheetsdb import connect
-
+import altair as alt
 
 st.set_page_config(page_title="Water Data Pi", page_icon=":books:")
 st.title(":books: Water Data Pi :books:")
@@ -41,11 +41,25 @@ db_conn = create_database_connection()
 data_df = data_df.rename(columns={'_6': 'LightPercentage', '_2': 'EC','_4': 'WaterLevel','_6': 'LightPercentage'})
 st.write(data_df)
 
+
+
 # Draw line chart for Timestamp vs Temperature
 st.line_chart(data_df.set_index('Timestamp')['Temperature'])
 
+
+ec_chart_data = (
+        alt.Chart(
+            data=data_df.set_index('Timestamp')['EC'],
+            title="EC overtime",
+        )
+        .mark_line()
+        .encode(
+            x=alt.X("EC", axis=alt.Axis(title="EC"))
+        )
+)
+
 # Draw line chart for Timestamp vs EC
-st.line_chart(data_df.set_index('Timestamp')['EC'])
+st.area_chart(ec_chart_data)
 
 # Draw line chart for Timestamp vs pH
 st.line_chart(data_df.set_index('Timestamp')['pH'])
