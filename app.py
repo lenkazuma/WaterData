@@ -84,9 +84,9 @@ try:
                 #"borderWidth": 4,
                 "width": '90%',
                 "lineHeight": 20,
-                "height": 50,
+                "height": 30,
                 #"borderRadius": 90,
-                "offsetCenter": [0, '40%'],
+                "offsetCenter": [0, '20%'],
                 "valueAnimation": "true",
             },
             "data": [{
