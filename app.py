@@ -89,7 +89,7 @@ try:
                 "valueAnimation": "true",
             },
             "data": [{
-                "value": "{:.2f}".format(data_df['Temperature'].iloc[-1]),
+                "value": data_df['Temperature'].iloc[-1],
                 "name": ' C'
             }]
         }]
