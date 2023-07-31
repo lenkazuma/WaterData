@@ -79,9 +79,9 @@ try:
                 "valueAnimation": "true",
                 "formatter": '{value}%',
                 "backgroundColor": '#58D9F9',
-                #"borderColor": '#999',
-                #"borderWidth": 4,
-                "width": '80%',
+                "borderColor": '#999',
+                "borderWidth": 4,
+                "width": '50%',
                 "lineHeight": 20,
                 "height": 20,
                 "borderRadius": 188,
@@ -89,7 +89,7 @@ try:
                 "valueAnimation": "true",
             },
             "data": [{
-                "value": data_df['Temperature'].iloc[-1],
+                "value": "{:.2f}".format(data_df['Temperature'].iloc[-1]),
                 "name": ' C'
             }]
         }]
