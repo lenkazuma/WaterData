@@ -48,88 +48,102 @@ data_df.LightPercentage = data_df.LightPercentage.round(2)
 
 df_last_300 = data_df.tail(1370)
 
-st.write(df_last_300)
+# creating a single-element container
+placeholder = st.empty()
 
-try:
-    option = {
-        "tooltip": {
-            "formatter": '{a} <br/>{b} : {c}%'
-        },
-        "series": [{
-            "name": 'Temp',
-            "type": 'gauge',
-            "startAngle": 180,
-            "endAngle": 0,
-            "progress": {
-                "show": "true"
-            },
-            "radius":'100%', 
+with placeholder.container():
 
-            "itemStyle": {
-                "color": '#58D9F9',
-                "shadowColor": 'rgba(0,138,255,0.45)',
-                "shadowBlur": 10,
-                "shadowOffsetX": 2,
-                "shadowOffsetY": 2,
-                "radius": '55%',
-            },
-            "progress": {
-                "show": "true",
-                "roundCap": "true",
-                "width": 15
-            },
-            "pointer": {
-                "length": '60%',
-                "width": 8,
-                "offsetCenter": [0, '5%']
-            },
-            "detail": {
-                "valueAnimation": "true",
-                "formatter": '{value} C',
-                "backgroundColor": '#58D9F9',
-                #"borderColor": '#999',
-                #"borderWidth": 4,
-                "width": '90%',
-                "lineHeight": 20,
-                "height": 30,
-                "borderRadius": 90,
-                "offsetCenter": [0, '40%'],
-                "valueAnimation": "true",
-            },
-            "data": [{
-                "value": df_last_300['Temperature'].iloc[-1],
-                "offsetCenter": [0, '30%'],
-                "name": 'Temperature'
-                
-            }]
-        }]
-    }
-    st_echarts(options=option, key="1")
-except Exception as e:
-    print(e)
-
-    
+    # create two columns
+    row1col1, row1col2 = st.columns(2)
 
 
-# Draw line chart for Timestamp vs Temperature
-st.line_chart(df_last_300.set_index('Timestamp')['Temperature'])
+    with row1col1:
+        try:
+            option = {
+                "tooltip": {
+                    "formatter": '{a} <br/>{b} : {c}%'
+                },
+                "series": [{
+                    "name": 'Temp',
+                    "type": 'gauge',
+                    "startAngle": 180,
+                    "endAngle": 0,
+                    "progress": {
+                        "show": "true"
+                    },
+                    "radius":'100%', 
 
-custom_chart = alt.Chart(df_last_300).mark_line().encode(
-    x='Timestamp',
-    y='EC',
-    color=alt.Color('animal',
-            scale=alt.Scale(
-                domain=['antelope', 'velociraptor'],
-                range=['blue', 'red'])
-                )
-)
-#st.line_chart(data_df.set_index('Timestamp')['EC'])
+                    "itemStyle": {
+                        "color": '#58D9F9',
+                        "shadowColor": 'rgba(0,138,255,0.45)',
+                        "shadowBlur": 10,
+                        "shadowOffsetX": 2,
+                        "shadowOffsetY": 2,
+                        "radius": '55%',
+                    },
+                    "progress": {
+                        "show": "true",
+                        "roundCap": "true",
+                        "width": 15
+                    },
+                    "pointer": {
+                        "length": '60%',
+                        "width": 8,
+                        "offsetCenter": [0, '5%']
+                    },
+                    "detail": {
+                        "valueAnimation": "true",
+                        "formatter": '{value} C',
+                        "backgroundColor": '#58D9F9',
+                        #"borderColor": '#999',
+                        #"borderWidth": 4,
+                        "width": '90%',
+                        "lineHeight": 20,
+                        "height": 30,
+                        "borderRadius": 90,
+                        "offsetCenter": [0, '40%'],
+                        "valueAnimation": "true",
+                    },
+                    "data": [{
+                        "value": df_last_300['Temperature'].iloc[-1],
+                        "offsetCenter": [0, '30%'],
+                        "name": 'Temperature'
+                        
+                    }]
+                }]
+            }
+            st_echarts(options=option, key="1")
+        except Exception as e:
+            print(e)
 
-# Draw line chart for Timestamp vs EC
-st.area_chart(data = df_last_300, x="Timestamp", y = "EC")
+        
 
-# Draw line chart for Timestamp vs pH
-st.line_chart(df_last_300.set_index('Timestamp')['pH'])
+    with row1col2:
+    # Draw line chart for Timestamp vs Temperature
+        st.line_chart(df_last_300.set_index('Timestamp')['Temperature'])
 
-# Draw line chart for Timestamp vs Light
-st.line_chart(df_last_300.set_index('Timestamp')['Light'])
+    row2col1, row2col2 = st.columns(2)
+
+    with row2col1:
+        custom_chart = alt.Chart(df_last_300).mark_line().encode(
+            x='Timestamp',
+            y='EC',
+            color=alt.Color('animal',
+                    scale=alt.Scale(
+                        domain=['antelope', 'velociraptor'],
+                        range=['blue', 'red'])
+                        )
+        )
+ 
+        # Draw line chart for Timestamp vs EC
+        st.area_chart(data = df_last_300, x="Timestamp", y = "EC")
+
+    with row2col2:
+        # Draw line chart for Timestamp vs pH
+        st.line_chart(df_last_300.set_index('Timestamp')['pH'])
+
+
+    # Draw line chart for Timestamp vs Light
+    st.line_chart(df_last_300.set_index('Timestamp')['Light'])
+
+    st.write(df_last_300)
