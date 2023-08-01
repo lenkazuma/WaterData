@@ -92,12 +92,14 @@ try:
                 "lineHeight": 20,
                 "height": 30,
                 "borderRadius": 90,
-                "offsetCenter": [0, '60%'],
+                "offsetCenter": [0, '40%'],
                 "valueAnimation": "true",
             },
             "data": [{
                 "value": df_last_300['Temperature'].iloc[-1],
+                "offsetCenter": [0, '30%'],
                 "name": 'Temperature'
+                
             }]
         }]
     }
