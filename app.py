@@ -5,7 +5,7 @@ from gsheetsdb import connect
 import altair as alt
 from streamlit_echarts import st_echarts
 
-st.set_page_config(page_title="Water Data Pi", page_icon=":books:")
+st.set_page_config(page_title="Water Data Pi", page_icon=":books:",layout="wide")
 st.title("Water Data Pi")
 # Create a connection object.
 credentials = service_account.Credentials.from_service_account_info(
