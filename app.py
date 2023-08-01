@@ -17,7 +17,6 @@ credentials = service_account.Credentials.from_service_account_info(
 conn = connect(credentials=credentials)
 
 # Perform SQL query on the Google Sheet.
-# Uses st.cache_data to only rerun when the query changes or after 10 min.
 
 def get_data():
     query = f'SELECT * FROM "{sheet_url}"'
@@ -93,12 +92,12 @@ with placeholder.container():
                     },
                     "detail": {
                         "valueAnimation": "true",
-                        "formatter": '{value} C',
+                        "formatter": '{value} °C',
                         "backgroundColor": '#58D9F9',
                         #"borderColor": '#999',
                         #"borderWidth": 4,
-                        "width": '90%',
-                        "lineHeight": 20,
+                        "width": '100%',
+                        "lineHeight": 30,
                         "height": 30,
                         "borderRadius": 90,
                         "offsetCenter": [0, '40%'],
@@ -106,7 +105,6 @@ with placeholder.container():
                     },
                     "data": [{
                         "value": df_last_300['Temperature'].iloc[-1],
-                        "offsetCenter": [0, '30%'],
                         "name": 'Temperature'
                         
                     }]
