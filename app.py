@@ -126,7 +126,7 @@ with placeholder.container():
         ec_df = df_last_300[['Timestamp', 'EC']].copy()
         custom_chart = alt.Chart(ec_df).mark_line().encode(
             x='Timestamp',
-            y = alt.Y('EC', scale=alt.Scale(domain=[0, 1200])),
+            y = alt.Y('EC', scale=alt.Scale(domain=[0, 1200]))
             
         )
  
