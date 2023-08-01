@@ -124,15 +124,14 @@ with placeholder.container():
     row2col1, row2col2 = st.columns(2)
 
     ec_df = df_last_300[['Timestamp', 'EC']].copy()
-    
-    custom_chart = alt.Chart(ec_df).mark_line().encode(
+
+    custom_chart = alt.Chart(ec_df).mark_line(color="#FF5733").encode(
         x='Timestamp',
         y = alt.Y('EC', scale=alt.Scale(domain=[0, 1200]))
     )
 
     with row2col1:
         # Draw line chart for Timestamp vs EC
-        #st.altair_chart(data = df_last_300, x="Timestamp", y = "EC")
         st.altair_chart(custom_chart)
 
     with row2col2:
