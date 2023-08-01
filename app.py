@@ -77,7 +77,7 @@ with placeholder.container():
                         "color": '#58D9F9',
                         "shadowColor": 'rgba(0,138,255,0.45)',
                         "shadowBlur": 10,
-                        "shadowOffsetX": 2,
+                        "shadowOffsetX": 1,
                         "shadowOffsetY": 2,
                         "radius": '55%',
                     },
