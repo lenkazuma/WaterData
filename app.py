@@ -130,7 +130,7 @@ with placeholder.container():
 
     ec_chart = alt.Chart(ec_df).mark_line(color="#FF5733").encode(
         x='Timestamp',
-        y = alt.Y('EC', scale=alt.Scale(domain=[0, 1200]))
+        y = alt.Y('pH', scale=alt.Scale(domain=[0, 1200]))
     )
 
     ph_chart = alt.Chart(ph_df).mark_line(color="#FFD433").encode(
