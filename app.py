@@ -126,8 +126,14 @@ with placeholder.container():
     row2col1, row2col2 = st.columns(2)
 
     ec_df = df_last_300[['Timestamp', 'EC']].copy()
+    ph_df = df_last_300[['Timestamp', 'pH']].copy()
 
-    custom_chart = alt.Chart(ec_df).mark_line(color="#FF5733").encode(
+    ec_chart = alt.Chart(ec_df).mark_line(color="#FF5733").encode(
+        x='Timestamp',
+        y = alt.Y('EC', scale=alt.Scale(domain=[0, 1200]))
+    )
+
+    ph_chart = alt.Chart(ph_df).mark_line(color="#FFD433").encode(
         x='Timestamp',
         y = alt.Y('EC', scale=alt.Scale(domain=[0, 1200]))
     )
@@ -135,12 +141,12 @@ with placeholder.container():
     with row2col1:
         st.header("EC Level")
         # Draw line chart for Timestamp vs EC
-        st.altair_chart(custom_chart)
+        st.altair_chart(ec_chart)
 
     with row2col2:
         st.header("pH Level")
         # Draw line chart for Timestamp vs pH
-        st.line_chart(df_last_300.set_index('Timestamp')['pH'])
+        st.altair_chart(ph_chart)
 
     st.header("Light Intensity")
     # Draw line chart for Timestamp vs Light
