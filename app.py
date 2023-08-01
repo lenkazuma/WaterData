@@ -123,9 +123,10 @@ with placeholder.container():
     row2col1, row2col2 = st.columns(2)
 
     with row2col1:
-        custom_chart = alt.Chart(df_last_300).mark_line().encode(
+        ec_df = df_last_300[['Timestamp', 'EC']].copy()
+        custom_chart = alt.Chart(ec_df).mark_line().encode(
             x='Timestamp',
-            y='EC',
+            y = alt.Y('EC', scale=alt.Scale(domain=[0, 1200]),
             color=alt.Color('animal',
                     scale=alt.Scale(
                         domain=['antelope', 'velociraptor'],
@@ -134,7 +135,8 @@ with placeholder.container():
         )
  
         # Draw line chart for Timestamp vs EC
-        st.area_chart(data = df_last_300, x="Timestamp", y = "EC")
+        #st.altair_chart(data = df_last_300, x="Timestamp", y = "EC")
+        st.altair_chart(custom_chart)
 
     with row2col2:
         # Draw line chart for Timestamp vs pH
