@@ -40,9 +40,14 @@ db_conn = create_database_connection()
 # Print results.
 data_df.Temperature = data_df.Temperature.round(2)
 
-data_df = data_df.rename(columns={'_6': 'LightPercentage', '_2': 'EC','_4': 'WaterLevel','_6': 'LightPercentage'})
-st.write(data_df)
 
+
+data_df = data_df.rename(columns={'_6': 'LightPercentage', '_2': 'EC','_4': 'WaterLevel','_6': 'LightPercentage'})
+
+
+df_last_300 = data_df.tail(300)
+
+st.write(df_last_300)
 try:
     option = {
         "tooltip": {
@@ -90,7 +95,7 @@ try:
                 "valueAnimation": "true",
             },
             "data": [{
-                "value": data_df['Temperature'].iloc[-1],
+                "value": df_last_300['Temperature'].iloc[-1],
                 "name": 'Temperature'
             }]
         }]
@@ -100,7 +105,7 @@ except Exception as e:
     print(e)
 
     
-df_last_300 = data_df.tail(300)
+
 
 # Draw line chart for Timestamp vs Temperature
 st.line_chart(df_last_300.set_index('Timestamp')['Temperature'])
