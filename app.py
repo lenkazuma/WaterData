@@ -57,6 +57,7 @@ with placeholder.container():
 
 
     with row1col1:
+        st.header("Temperature")
         try:
             option = {
                 "tooltip": {
@@ -117,7 +118,8 @@ with placeholder.container():
         
 
     with row1col2:
-    # Draw line chart for Timestamp vs Temperature
+        
+        # Draw line chart for Timestamp vs Temperature
         st.line_chart(df_last_300.set_index('Timestamp')['Temperature'])
 
 
@@ -131,15 +133,18 @@ with placeholder.container():
     )
 
     with row2col1:
+        st.header("EC Level")
         # Draw line chart for Timestamp vs EC
         st.altair_chart(custom_chart)
 
     with row2col2:
+        st.header("pH Level")
         # Draw line chart for Timestamp vs pH
         st.line_chart(df_last_300.set_index('Timestamp')['pH'])
 
-
+    st.header("Light Intensity")
     # Draw line chart for Timestamp vs Light
     st.line_chart(df_last_300.set_index('Timestamp')['Light'])
 
+    st.header("Raw Data")
     st.write(df_last_300)
