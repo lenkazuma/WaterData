@@ -127,11 +127,7 @@ with placeholder.container():
         custom_chart = alt.Chart(ec_df).mark_line().encode(
             x='Timestamp',
             y = alt.Y('EC', scale=alt.Scale(domain=[0, 1200])),
-            color=alt.Color('animal',
-                    scale=alt.Scale(
-                        domain=['antelope', 'velociraptor'],
-                        range=['blue', 'red'])
-                        )
+            
         )
  
         # Draw line chart for Timestamp vs EC
