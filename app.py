@@ -45,9 +45,10 @@ data_df.Temperature = data_df.Temperature.round(2)
 data_df = data_df.rename(columns={'_6': 'LightPercentage', '_2': 'EC','_4': 'WaterLevel','_6': 'LightPercentage'})
 
 
-df_last_300 = data_df.tail(300)
+df_last_300 = data_df.tail(1370)
 
 st.write(df_last_300)
+
 try:
     option = {
         "tooltip": {
