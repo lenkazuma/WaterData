@@ -38,12 +38,13 @@ def create_database_connection():
 db_conn = create_database_connection()
 
 # Print results.
-data_df.Temperature = data_df.Temperature.round(2)
-
-
 
 data_df = data_df.rename(columns={'_6': 'LightPercentage', '_2': 'EC','_4': 'WaterLevel','_6': 'LightPercentage'})
-
+data_df.Temperature = data_df.Temperature.round(2)
+data_df.EC = data_df.EC.round(4)
+data_df.pH = data_df.pH.round(4)
+data_df.Light = data_df.Light.round(4)
+data_df.LightPercentage = data_df.LightPercentage.round(2)
 
 df_last_300 = data_df.tail(1370)
 
