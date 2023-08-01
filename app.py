@@ -6,7 +6,7 @@ import altair as alt
 from streamlit_echarts import st_echarts
 
 st.set_page_config(page_title="Water Data Pi", page_icon=":books:")
-st.title(":books: Water Data Pi :books:")
+st.title("Water Data Pi")
 # Create a connection object.
 credentials = service_account.Credentials.from_service_account_info(
     st.secrets["gcp_service_account"],
