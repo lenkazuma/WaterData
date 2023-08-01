@@ -100,12 +100,12 @@ except Exception as e:
     print(e)
 
     
-
+df_last_300 = data_df.tail(300)
 
 # Draw line chart for Timestamp vs Temperature
-st.line_chart(data_df.set_index('Timestamp')['Temperature'])
+st.line_chart(df_last_300.set_index('Timestamp')['Temperature'])
 
-custom_chart = alt.Chart(data_df).mark_line().encode(
+custom_chart = alt.Chart(df_last_300).mark_line().encode(
     x='Timestamp',
     y='EC',
     color=alt.Color('animal',
@@ -117,10 +117,10 @@ custom_chart = alt.Chart(data_df).mark_line().encode(
 #st.line_chart(data_df.set_index('Timestamp')['EC'])
 
 # Draw line chart for Timestamp vs EC
-st.area_chart(data = data_df, x="Timestamp", y = "EC")
+st.area_chart(data = df_last_300, x="Timestamp", y = "EC")
 
 # Draw line chart for Timestamp vs pH
-st.line_chart(data_df.set_index('Timestamp')['pH'])
+st.line_chart(df_last_300.set_index('Timestamp')['pH'])
 
 # Draw line chart for Timestamp vs Light
-st.line_chart(data_df.set_index('Timestamp')['Light'])
+st.line_chart(df_last_300.set_index('Timestamp')['Light'])
