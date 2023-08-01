@@ -97,7 +97,7 @@ with placeholder.container():
                         "backgroundColor": '#58D9F9',
                         "width": '100%',
                         "lineHeight": 100,
-                        "height": 30,
+                        "height": 50,
                         "borderRadius": 90,
                         "offsetCenter": [0, '50%'],
                         "valueAnimation": "true",
