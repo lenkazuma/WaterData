@@ -183,10 +183,27 @@ with placeholder.container():
     ec_df = df_last_300[['Timestamp', 'EC']].copy()
     ph_df = df_last_300[['Timestamp', 'pH']].copy()
 
-    ec_chart = alt.Chart(ec_df).mark_line(color="#FF5733").encode(
-        x='Timestamp',
-        y = alt.Y('EC', scale=alt.Scale(domain=[0, 1200]))
-    )
+    # ec_chart = alt.Chart(ec_df).mark_line(color="#FF5733").encode(
+    #     x='Timestamp',
+    #     y = alt.Y('EC', scale=alt.Scale(domain=[0, 1200]))
+    # )
+    ec_chart= alt.Chart(ec_df).transform_filter(
+        'datum.symbol==="GOOG"'
+        ).mark_area(
+            line={'color':'darkgreen'},
+            color=alt.Gradient(
+                gradient='linear',
+                stops=[alt.GradientStop(color='white', offset=0),
+                    alt.GradientStop(color='darkgreen', offset=1)],
+                x1=1,
+                x2=1,
+                y1=1,
+                y2=0
+            )
+        ).encode(
+            alt.X('date:Timestamp'),
+            alt.Y('EC Level:EC',scale=alt.Scale(domain=[0, 1200]))
+        )
 
     ph_chart = alt.Chart(ph_df).mark_line(color="#FFD433").encode(
         x='Timestamp',
