@@ -223,7 +223,7 @@ with placeholder.container():
     brush = alt.selection_interval()
 
     ph_vs_ec = alt.Chart(data_df).mark_circle().encode(
-        x = alt.X('EC'),
+        x = alt.X('EC',scale=alt.Scale(domain=[20, 1600])),
         y = alt.Y('pH',scale=alt.Scale(domain=[4, 10])),
         color=alt.condition(brush, alt.value('steelblue'), alt.value('grey'))
     ).add_params(brush)
