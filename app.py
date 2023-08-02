@@ -117,14 +117,14 @@ with placeholder.container():
                         "lineHeight": 40,
                         "borderRadius": 8,
                         "offsetCenter": [0, '-15%'],
-                        "fontSize": 60,
+                        "fontSize": 30,
                         "fontWeight": 'bolder',
                         "formatter": '{value} °C',
                         "color": 'inherit'
                     },
                     "data": [
                         {
-                            "value": 20
+                            "value": df_last_300['Temperature'].iloc[-1]
                         }
                     ]
                 },
