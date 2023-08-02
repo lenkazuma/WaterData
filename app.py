@@ -170,8 +170,6 @@ with placeholder.container():
         st_echarts(options=option, key="1")
 
 
-        
-
     with row1col2:
         
         # Draw line chart for Timestamp vs Temperature
@@ -218,6 +216,16 @@ with placeholder.container():
         st.header("pH Level")
         # Draw line chart for Timestamp vs pH
         st.altair_chart(ph_chart,use_container_width=True)
+
+    brush = alt.selection_interval()
+
+    ph_vs_ec = alt.Chart(df_last_300).mark_point().encode(
+        x = alt.X('EC'),
+        y = alt.Y('pH'),
+        color=alt.condition(brush, alt.value('steelblue'), alt.value('grey'))
+    ).add_params(brush)
+    
+    st.altair_chart(ph_vs_ec,use_container_width=True)
 
     st.header("Light Intensity")
     # Draw line chart for Timestamp vs Light
