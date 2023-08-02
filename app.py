@@ -189,7 +189,7 @@ with placeholder.container():
     # )
     ec_chart= alt.Chart(ec_df).transform_filter(
         'datum.symbol==="GOOG"'
-        ).mark_area(
+    ).mark_area(
             line={'color':'darkgreen'},
             color=alt.Gradient(
                 gradient='linear',
@@ -200,7 +200,7 @@ with placeholder.container():
                 y1=1,
                 y2=0
             )
-        ).encode(
+    ).encode(
             alt.X('Timestamp'),
             alt.Y('EC',scale=alt.Scale(domain=[0, 1200]))
     )
