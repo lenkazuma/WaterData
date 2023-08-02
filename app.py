@@ -220,9 +220,9 @@ with placeholder.container():
     st.header("pH VS. EC")
     brush = alt.selection_interval()
 
-    ph_vs_ec = alt.Chart(df_last_300).mark_point().encode(
+    ph_vs_ec = alt.Chart(data_df).mark_point().encode(
         x = alt.X('EC'),
-        y = alt.Y('pH'),
+        y = alt.Y('pH',scale=alt.Scale(domain=[4, 10])),
         color=alt.condition(brush, alt.value('steelblue'), alt.value('grey'))
     ).add_params(brush)
 
