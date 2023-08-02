@@ -45,7 +45,7 @@ data_df.pH = data_df.pH.round(4)
 data_df.Light = data_df.Light.round(4)
 data_df.LightPercentage = data_df.LightPercentage.round(2)
 
-df_last_300 = data_df.tail(1370)
+df_last_300 = data_df.tail(1600)
 
 # creating a single-element container
 placeholder = st.empty()
