@@ -201,8 +201,8 @@ with placeholder.container():
                 y2=0
             )
         ).encode(
-            alt.X('date:Timestamp'),
-            alt.Y('EC Level:EC',scale=alt.Scale(domain=[0, 1200]))
+            alt.X('Timestamp:T'),
+            alt.Y('EC:Q',scale=alt.Scale(domain=[0, 1200]))
         )
 
     ph_chart = alt.Chart(ph_df).mark_line(color="#FFD433").encode(
