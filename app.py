@@ -196,12 +196,12 @@ with placeholder.container():
     with row2col1:
         st.header("EC Level")
         # Draw line chart for Timestamp vs EC
-        st.altair_chart(ec_chart)
+        st.altair_chart(ec_chart,use_container_width=True)
 
     with row2col2:
         st.header("pH Level")
         # Draw line chart for Timestamp vs pH
-        st.altair_chart(ph_chart)
+        st.altair_chart(ph_chart,use_container_width=True)
 
     st.header("Light Intensity")
     # Draw line chart for Timestamp vs Light
