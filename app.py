@@ -218,9 +218,11 @@ with placeholder.container():
         st.altair_chart(ph_chart,use_container_width=True)
 
     st.header("pH VS. EC")
+    data_df = data_df.dropna(subset=['EC'])
+    data_df = data_df.dropna(subset=['pH'])
     brush = alt.selection_interval()
 
-    ph_vs_ec = alt.Chart(data_df).mark_point().encode(
+    ph_vs_ec = alt.Chart(data_df).mark_circle().encode(
         x = alt.X('EC'),
         y = alt.Y('pH',scale=alt.Scale(domain=[4, 10])),
         color=alt.condition(brush, alt.value('steelblue'), alt.value('grey'))
