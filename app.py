@@ -56,7 +56,6 @@ with placeholder.container():
     row1col1, row1col2 = st.columns(2)
 
 
-
     with row1col1:
         st.header("Temperature")
         option = {
@@ -168,57 +167,6 @@ with placeholder.container():
                 }
             ]
         }
-
-        # option = {
-        #     "tooltip": {
-        #         "formatter": '{a} <br/>{b} : {c}%'
-        #     },
-        #     "series": [{
-        #         "name": 'Temp',
-        #         "type": 'gauge',
-        #         "startAngle": 180,
-        #         "endAngle": 0,
-        #         "progress": {
-        #             "show": "true"
-        #         },
-        #         "radius":'100%', 
-
-        #         "itemStyle": {
-        #             "color": '#58D9F9',
-        #             "shadowColor": 'rgba(0,138,255,0.45)',
-        #             "shadowBlur": 10,
-        #             "shadowOffsetX": 1,
-        #             "shadowOffsetY": 1,
-        #             "radius": '55%',
-        #         },
-        #         "progress": {
-        #             "show": "true",
-        #             "roundCap": "true",
-        #             "width": 15
-        #         },
-        #         "pointer": {
-        #             "length": '60%',
-        #             "width": 8,
-        #             "offsetCenter": [0, '5%']
-        #         },
-        #         "detail": {
-        #             "valueAnimation": "true",
-        #             "formatter": '{value} °C',
-        #             "backgroundColor": '#58D9F9',
-        #             "width": '100%',
-        #             "lineHeight": 100,
-        #             "height": 50,
-        #             "borderRadius": 90,
-        #             "offsetCenter": [0, '50%'],
-        #             "valueAnimation": "true",
-        #         },
-        #         "data": [{
-        #             "value": df_last_300['Temperature'].iloc[-1],
-        #             "name": 'Temperature'
-                    
-        #         }]
-        #     }]
-        # }
         st_echarts(options=option, key="1")
 
 
