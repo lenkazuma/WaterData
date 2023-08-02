@@ -195,8 +195,54 @@ with placeholder.container():
 
     with row2col1:
         st.header("EC Level")
+
+        option_ec = {
+        "title": {
+            "left": 'center',
+            "text": 'Large Ara Chart'
+        },
+        "toolbox": {
+            "feature": {
+            "dataZoom": {
+                "yAxisIndex": 'none'
+            },
+            "restore": {},
+            "saveAsImage": {}
+            }
+        },
+        "xAxis": {
+            "type": 'time',
+            "boundaryGap": 'false'
+        },
+        "yAxis": {
+            "type": 'value',
+            "boundaryGap": [0, '100%']
+        },
+        "dataZoom": [
+            {
+            "type": 'inside',
+            "start": 0,
+            "end": 20
+            },
+            {
+            "start": 0,
+            "end": 20
+            }
+        ],
+        "series": [
+            {
+            "name": 'Fake Data',
+            "type": 'line',
+            "smooth": 'true',
+            "symbol": 'none',
+            "areaStyle": {},
+            "data": ec_df
+            }
+        ]
+        }
+        st_echarts(options=option_ec, key="1")
         # Draw line chart for Timestamp vs EC
-        st.altair_chart(ec_chart,use_container_width=True)
+        #st.altair_chart(ec_chart,use_container_width=True)
 
     with row2col2:
         st.header("pH Level")
