@@ -217,6 +217,7 @@ with placeholder.container():
         # Draw line chart for Timestamp vs pH
         st.altair_chart(ph_chart,use_container_width=True)
 
+    st.header("pH VS. EC")
     brush = alt.selection_interval()
 
     ph_vs_ec = alt.Chart(df_last_300).mark_point().encode(
@@ -224,7 +225,7 @@ with placeholder.container():
         y = alt.Y('pH'),
         color=alt.condition(brush, alt.value('steelblue'), alt.value('grey'))
     ).add_params(brush)
-    
+
     st.altair_chart(ph_vs_ec,use_container_width=True)
 
     st.header("Light Intensity")
