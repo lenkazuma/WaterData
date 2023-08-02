@@ -203,7 +203,7 @@ with placeholder.container():
         ).encode(
             alt.X('Timestamp'),
             alt.Y('EC',scale=alt.Scale(domain=[0, 1200]))
-        )
+    )
 
     ph_chart = alt.Chart(ph_df).mark_line(color="#FFD433").encode(
         x='Timestamp',
