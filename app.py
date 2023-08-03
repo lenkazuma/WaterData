@@ -191,10 +191,6 @@ with placeholder.container():
     ec_df = df_last_300[['Timestamp', 'EC']].copy()
     ph_df = df_last_300[['Timestamp', 'pH']].copy()
 
-    # ec_chart = alt.Chart(ec_df).mark_line(color="#FF5733").encode(
-    #     x='Timestamp',
-    #     y = alt.Y('EC', scale=alt.Scale(domain=[0, 1200]))
-    # )
     ec_chart= alt.Chart(ec_df).mark_area(
             line={'color':'darkgreen'},
             color=alt.Gradient(
@@ -211,11 +207,26 @@ with placeholder.container():
             alt.Y('EC',scale=alt.Scale(domain=[0, 1600]))
     )
 
-    ph_chart = alt.Chart(ph_df).mark_line(color="#FFD433").encode(
-        x='Timestamp',
-        y = alt.Y('pH', scale=alt.Scale(domain=[0, 14]))
+    # ph_chart = alt.Chart(ph_df).mark_line(color="#FFD433").encode(
+    #     x='Timestamp',
+    #     y = alt.Y('pH', scale=alt.Scale(domain=[0, 14]))
+    # )
+    
+    ph_chart= alt.Chart(ph_df).mark_area(
+            line={'color':'#FFD433'},
+            color=alt.Gradient(
+                gradient='linear',
+                stops=[alt.GradientStop(color='white', offset=0),
+                    alt.GradientStop(color='#FFD433', offset=1)],
+                x1=1,
+                x2=1,
+                y1=1,
+                y2=0
+            )
+    ).encode(
+            alt.X('Timestamp'),
+            alt.Y('pH',scale=alt.Scale(domain=[0, 12]))
     )
-
     with row2col1:
         st.header("EC Level")
 
