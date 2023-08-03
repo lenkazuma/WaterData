@@ -53,6 +53,7 @@ data_length = len(data_df)
 values = st.slider('Select the range of data', 1, data_length, (data_length - 3000, data_length), step=1)
 
 # Extract the selected range
+st.write(values)
 start_index, end_index = values
 df_last_300 = data_df.iloc[start_index:end_index]
 
