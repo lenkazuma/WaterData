@@ -45,7 +45,17 @@ data_df.pH = data_df.pH.round(4)
 data_df.Light = data_df.Light.round(4)
 data_df.LightPercentage = data_df.LightPercentage.round(2)
 
-df_last_300 = data_df.tail(1600)
+
+# Get the length of the DataFrame
+data_length = len(data_df)
+
+# Add the double range slider to select a range of data
+values = st.slider('Select the range of data', 1, data_length, (data_length - 300, data_length))
+
+# Extract the selected range
+start_index, end_index = values
+df_last_300 = data_df.iloc[-end_index:-start_index]
+#df_last_300 = data_df.tail(1600)
 
 # creating a single-element container
 placeholder = st.empty()
