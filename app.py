@@ -54,8 +54,6 @@ values = st.slider('Select the range of data', 1, data_length, (data_length - 30
 
 # Extract the selected range
 start_index, end_index = values
-start_index = data_length - start_index
-end_index = data_length - end_index
 df_last_300 = data_df.iloc[start_index:end_index]
 
 # creating a single-element container
