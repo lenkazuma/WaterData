@@ -50,12 +50,13 @@ data_df.LightPercentage = data_df.LightPercentage.round(2)
 data_length = len(data_df)
 
 # Add the double range slider to select a range of data
-values = st.slider('Select the range of data', 1, data_length, (data_length - 3000, data_length))
+values = st.slider('Select the range of data', 1, data_length, (data_length - 3000, data_length), step=1)
 
 # Extract the selected range
 start_index, end_index = values
-df_last_300 = data_df.iloc[-end_index:-start_index]
-#df_last_300 = data_df.tail(1600)
+start_index = data_length - start_index
+end_index = data_length - end_index
+df_last_300 = data_df.iloc[start_index:end_index]
 
 # creating a single-element container
 placeholder = st.empty()
