@@ -50,7 +50,7 @@ data_df.LightPercentage = data_df.LightPercentage.round(2)
 data_length = len(data_df)
 
 # Add the double range slider to select a range of data
-values = st.slider('Select the range of data', 1, data_length, (data_length - 300, data_length))
+values = st.slider('Select the range of data', 1, data_length, (data_length - 3000, data_length))
 
 # Extract the selected range
 start_index, end_index = values
