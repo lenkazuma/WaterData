@@ -1,5 +1,4 @@
-# Water Data 
-
+# Water Data - Streamlit GoogleSheet Data visualisation
 WaterData  is a Streamlit application that connects to a Google Sheet to read and plot live data updated on the sheet. The project uses Google API for authentication and data retrieval.
 
 ## Features
