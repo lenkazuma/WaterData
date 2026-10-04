@@ -1,6 +1,6 @@
-gsheetsdb==0.1.13.1
-google-auth==1.35.0
-google-api-python-client
+streamlit>=1.50
+gspread>=6.0
+google-auth>=2.22
 pandas
 altair
 streamlit-echarts
