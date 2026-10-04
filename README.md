@@ -1,20 +1,17 @@
 # Streamlit GoogleSheet Data visualisation
-WaterData  is a Streamlit application that connects to a Google Sheet to read and plot live data updated on the sheet. The project uses Google API for authentication and data retrieval.
+WaterData is a Streamlit dashboard for DFRobot water sensors (temperature, EC, pH, water level, light) whose readings are logged to a Google Sheet, e.g. by a Raspberry Pi. It reads the sheet with a read-only service account and plots the live data.
 
 ## Features
-- Connects to a Google Sheet using Google API
-- Retrieves and displays live data from the sheet
-- Plots data using various visualization libraries including Altair and Streamlit Echarts
-- Allows users to select a range of data to visualize
+- Reads the sheet via [gspread](https://docs.gspread.org/) with a read-only service account (a `#gid=` in the URL selects a specific tab)
+- Data is cached for 60 seconds, with a **Refresh now** button
+- Latest-reading metric cards with change since the previous reading
+- Configurable alert thresholds for temperature, pH and EC
+- Temperature gauge, EC / pH / water level / light charts and a brushable pH-vs-EC scatter plot
+- Range slider to choose which readings to show, and CSV download of the selected range
 
 ## Requirements
-- Python 3.7+
-- Streamlit
-- Pandas
-- Google Auth
-- Gsheetsdb
-- Altair
-- Streamlit Echarts
+- Python 3.10+
+- Streamlit, Pandas, gspread, Google Auth, Altair, Streamlit Echarts (see `requirements.txt`)
 
 ## Installation
 
@@ -31,12 +28,15 @@ WaterData  is a Streamlit application that connects to a Google Sheet to read an
 
 3. Set up your Google Cloud Platform (GCP) service account:
     - Follow the instructions [here](https://cloud.google.com/iam/docs/creating-managing-service-account-keys) to create a service account and download the JSON key file.
-    - Add the service account email to your Google Sheet with edit permissions.
+    - Share your Google Sheet with the service account email (Viewer access is enough).
+    - The first row of the sheet must be the header row, in this column order: timestamp, temperature, EC, pH, water level, light, light %.
 
 4. Add your GCP service account credentials and Google Sheet URL to Streamlit secrets:
     - Create a file named `.streamlit/secrets.toml` in the project root directory.
-    - Add the following configuration, replacing the placeholders with your actual credentials and sheet URL:
+    - Add the following configuration, replacing the placeholders with your actual credentials and sheet URL. Note that `private_gsheets_url` must be a top-level key, placed before the `[gcp_service_account]` table:
     ```toml
+    private_gsheets_url = "https://docs.google.com/spreadsheets/d/your-sheet-id/edit#gid=0"
+
     [gcp_service_account]
     type = "service_account"
     project_id = "your-project-id"
@@ -48,9 +48,6 @@ WaterData  is a Streamlit application that connects to a Google Sheet to read an
     token_uri = "https://oauth2.googleapis.com/token"
     auth_provider_x509_cert_url = "https://www.googleapis.com/oauth2/v1/certs"
     client_x509_cert_url = "your-client-x509-cert-url"
-
-    [private_gsheets_url]
-    sheet_url = "your-google-sheet-url"
     ```
 
 ## Usage
@@ -62,7 +59,9 @@ streamlit run app.py
 
 ## Project Structure
 
-- `app.py`: The main application file containing the Streamlit code.
+- `app.py`: The Streamlit dashboard.
+- `waterdata.py`: Sheet parsing, cleaning, metric and alert helpers (no Streamlit dependency).
+- `tests/`: pytest tests for `waterdata.py` (`pip install pytest && pytest -q`).
 - `requirements.txt`: The list of required Python packages.
 - `.streamlit/secrets.toml`: File to store Streamlit secrets (not included in the repository for security reasons).
 
